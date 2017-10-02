@@ -98,7 +98,7 @@ final class MessageFactory implements MessageComponentInterface
     {
         $message = $this->messageProcessor->process($from, new Message($msg));
         foreach ($this->clients as $client) {
-            $client->send(json_encode($message->getMessage()));
+            $client->send($message->getMessage());
         }
     }
 }

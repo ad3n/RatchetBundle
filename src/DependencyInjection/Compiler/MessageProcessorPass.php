@@ -16,7 +16,7 @@ class MessageProcessorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('ihsan_ratchet.message_processor')) {
+        if (!$container->hasDefinition('Ihsan\RatchetBundle\Processor\ChainMessageProcessor')) {
             return;
         }
 
@@ -26,6 +26,6 @@ class MessageProcessorPass implements CompilerPassInterface
             $processors[] = new Reference($serviceId);
         }
 
-        $container->getDefinition('ihsan_ratchet.message_processor')->addArgument($processors);
+        $container->getDefinition('Ihsan\RatchetBundle\Processor\ChainMessageProcessor')->addArgument($processors);
     }
 }

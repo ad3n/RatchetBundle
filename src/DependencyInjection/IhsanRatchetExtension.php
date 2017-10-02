@@ -2,9 +2,6 @@
 
 namespace Ihsan\RatchetBundle\DependencyInjection;
 
-use Ihsan\RatchetBundle\Message\MessageFactory;
-use Ratchet\Http\HttpServer;
-use Ratchet\WebSocket\WsServer;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
