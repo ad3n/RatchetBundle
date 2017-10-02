@@ -52,6 +52,13 @@ class StartMessageProcessor implements MessageProcessorInterface
             - { name: 'ihsan_ratchet.message_processor' }
 ```
 
+## Add Configuration Key
+
+```yaml
+ihsan_ratchet:
+    web_socket_port: 7777
+```
+
 ## Start Server
 
 Run ```php bin/console ihsan-ratchet:web-socket:start```
