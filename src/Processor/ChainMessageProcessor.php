@@ -9,7 +9,7 @@ use Ratchet\ConnectionInterface;
 /**
  * @author Muhamad Surya Iksanudin <surya.kejawen@gmail.com>
  */
-class ChainMessageProcessor implements MessageProcessorInterface
+final class ChainMessageProcessor implements MessageProcessorInterface
 {
     /**
      * @var MessageProcessorInterface[]
@@ -26,7 +26,7 @@ class ChainMessageProcessor implements MessageProcessorInterface
 
     /**
      * @param ConnectionInterface $connection
-     * @param Message $message
+     * @param Message             $message
      *
      * @return Message
      */
@@ -34,13 +34,12 @@ class ChainMessageProcessor implements MessageProcessorInterface
     {
         foreach ($this->messageProcessors as $messageProcessor) {
             try {
-
                 return $messageProcessor->process($connection, $message);
             } catch (InvalidMessageException $e) {
                 continue;
             }
         }
 
-        throw new InvalidMessageException(sprintf('No processor can process the message.'));
+        throw new InvalidMessageException(sprintf('No processor can process %s', $message->getMessage()));
     }
 }

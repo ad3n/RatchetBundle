@@ -12,7 +12,7 @@ interface MessageProcessorInterface
 {
     /**
      * @param ConnectionInterface $connection
-     * @param Message $message
+     * @param Message             $message
      *
      * @return Message
      */

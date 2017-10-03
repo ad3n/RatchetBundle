@@ -22,10 +22,8 @@ use Ratchet\ConnectionInterface;
 /**
  * @author Muhamad Surya Iksanudin <surya.kejawen@gmail.com>
  */
-class StartMessageProcessor implements MessageProcessorInterface
+class MyOwnMessageProcessor implements MessageProcessorInterface
 {
-    const MESSAGE_KEY = 'START';
-
     /**
      * @param ConnectionInterface $connection
      * @param Message $message
@@ -34,6 +32,7 @@ class StartMessageProcessor implements MessageProcessorInterface
      */
     public function process(ConnectionInterface $connection, Message $message): Message
     {
+        //$message is message send by the client
         //Your Own Logic
         
         return $message;//return original message or
@@ -46,8 +45,10 @@ class StartMessageProcessor implements MessageProcessorInterface
 
 ## Create Service
 
+You must add tag `ihsan_ratchet.message_processor` to register your own message processor
+
 ```yaml
-    YourBundle\Message\Processor\StartMessageProcessor:
+    YourBundle\Message\Processor\MyOwnMessageProcessor:
         tags:
             - { name: 'ihsan_ratchet.message_processor' }
 ```

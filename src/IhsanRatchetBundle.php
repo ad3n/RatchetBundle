@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * @author Muhamad Surya Iksanudin <surya.kejawen@gmail.com>
  */
-class IhsanRatchetBundle extends Bundle
+final class IhsanRatchetBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container

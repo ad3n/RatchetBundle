@@ -29,8 +29,8 @@ final class MessageFactory implements MessageComponentInterface
     private $logger;
 
     /**
-     * @param MessageProcessorInterface       $messageProcessor
-     * @param LoggerInterface                 $logger
+     * @param MessageProcessorInterface $messageProcessor
+     * @param LoggerInterface           $logger
      */
     public function __construct(MessageProcessorInterface $messageProcessor, LoggerInterface $logger = null)
     {
