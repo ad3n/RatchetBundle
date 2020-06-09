@@ -1,10 +1,10 @@
-#Ihsan Ratchet Bundle
+# Ihsan Ratchet Bundle
 
 ## Install 
 
-Just add ```"ad3n/ratchet-bundle": "~0.1"```
+```composer req ad3n/ratchet-bundle```
 
-## Activating Bundle
+## Activating Bundle (Optional)
 
 Add ```new Ihsan\RatchetBundle\IhsanRatchetBundle()``` in your `AppKernel.php`
 
@@ -54,6 +54,12 @@ You must add tag `ihsan_ratchet.message_processor` to register your own message 
 ```
 
 ## Add Configuration Key
+
+```dotenv
+WEB_SOCKET_PORT=7777
+```
+
+or
 
 ```yaml
 ihsan_ratchet:
