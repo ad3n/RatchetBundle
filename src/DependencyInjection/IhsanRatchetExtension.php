@@ -2,6 +2,8 @@
 
 namespace Ihsan\RatchetBundle\DependencyInjection;
 
+use Exception;
+use InvalidArgumentException;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,7 +20,7 @@ class IhsanRatchetExtension extends Extension
      * @param array            $configs   An array of configuration values
      * @param ContainerBuilder $container A ContainerBuilder instance
      *
-     * @throws \InvalidArgumentException When provided tag is not defined in this extension
+     * @throws InvalidArgumentException|Exception When provided tag is not defined in this extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {

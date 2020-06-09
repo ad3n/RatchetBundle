@@ -2,11 +2,13 @@
 
 namespace Ihsan\RatchetBundle\Message;
 
+use Exception;
 use Ihsan\RatchetBundle\Processor\MessageProcessorInterface;
 use Psr\Log\LoggerInterface;
 use Ratchet\AbstractConnectionDecorator;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
+use SplObjectStorage;
 
 /**
  * @author Muhamad Surya Iksanudin <surya.kejawen@gmail.com>
@@ -14,7 +16,7 @@ use Ratchet\MessageComponentInterface;
 final class MessageFactory implements MessageComponentInterface
 {
     /**
-     * @var \SplObjectStorage
+     * @var SplObjectStorage
      */
     private $clients;
 
@@ -36,7 +38,7 @@ final class MessageFactory implements MessageComponentInterface
     {
         $this->messageProcessor = $messageProcessor;
         $this->logger = $logger;
-        $this->clients = new \SplObjectStorage();
+        $this->clients = new SplObjectStorage();
     }
 
     /**
@@ -44,7 +46,7 @@ final class MessageFactory implements MessageComponentInterface
      *
      * @param ConnectionInterface $conn The socket/connection that just connected to your application
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function onOpen(ConnectionInterface $conn)
     {/* @var AbstractConnectionDecorator $conn */
@@ -59,7 +61,7 @@ final class MessageFactory implements MessageComponentInterface
      *
      * @param ConnectionInterface $conn The socket/connection that is closing/closed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function onClose(ConnectionInterface $conn)
     {/* @var AbstractConnectionDecorator $conn */
@@ -74,11 +76,11 @@ final class MessageFactory implements MessageComponentInterface
      * the Exception is sent back down the stack, handled by the Server and bubbled back up the application through this method.
      *
      * @param ConnectionInterface $conn
-     * @param \Exception          $e
+     * @param Exception          $e
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function onError(ConnectionInterface $conn, \Exception $e)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {/* @var AbstractConnectionDecorator $conn */
         if ($this->logger) {
             $this->logger->error(sprintf('ResourceId %s error with message: %s', $conn->resourceId, $e->getMessage()));
@@ -89,10 +91,10 @@ final class MessageFactory implements MessageComponentInterface
     /**
      * Triggered when a client sends data through the socket.
      *
-     * @param \Ratchet\ConnectionInterface $from The socket/connection that sent the message to your application
+     * @param ConnectionInterface $from The socket/connection that sent the message to your application
      * @param string                       $msg  The message received
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function onMessage(ConnectionInterface $from, $msg)
     {

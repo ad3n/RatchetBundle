@@ -16,5 +16,9 @@
             <argument type="service" id="logger" on-invalid="null" />
         </service>
         <service id="Ihsan\RatchetBundle\Processor\ChainMessageProcessor" />
+        <service id="Ihsan\RatchetBundle\CommandServerCommand">
+            <argument type="service" id="Ratchet\Http\HttpServer" />
+            <argument>%ihsan_ratchet.web_socket_port%</argument>
+        </service>
     </services>
 </container>

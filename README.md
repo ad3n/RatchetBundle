@@ -62,4 +62,4 @@ ihsan_ratchet:
 
 ## Start Server
 
-Run ```php bin/console ihsan-ratchet:web-socket:start```
+Run ```php bin/console ihsan:server:start```

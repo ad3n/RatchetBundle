@@ -2,20 +2,33 @@
 
 namespace Ihsan\RatchetBundle\Command;
 
+use Ratchet\Http\HttpServerInterface;
 use Ratchet\Server\IoServer;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @author Muhamad Surya Iksanudin <surya.kejawen@gmail.com>
  */
-class IhsanWebSocketCommand extends ContainerAwareCommand
+class ServerCommand extends Command
 {
+    private $server;
+
+    private $port;
+
+    public function __construct(HttpServerInterface $server, int $port)
+    {
+        $this->server = $server;
+        $this->port = $port;
+
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this
-            ->setName('ihsan-ratchet:web-socket:start')
+            ->setName('ihsan:server:start')
             ->setDescription('Launch web socket server')
             ->setHelp('This command allows you to launch web socket server')
         ;
@@ -23,8 +36,7 @@ class IhsanWebSocketCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $webSocket = $this->getContainer()->get('Ratchet\Http\HttpServer');
-        $server = IoServer::factory($webSocket, (int) $this->getContainer()->getParameter('ihsan_ratchet.web_socket_port'));
+        $server = IoServer::factory($this->server, $this->port);
 
         $server->run();
     }

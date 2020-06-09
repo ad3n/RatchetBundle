@@ -2,6 +2,7 @@
 
 namespace Ihsan\RatchetBundle\DependencyInjection\Compiler;
 
+use Ihsan\RatchetBundle\Processor\ChainMessageProcessor;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -16,7 +17,7 @@ final class MessageProcessorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('Ihsan\RatchetBundle\Processor\ChainMessageProcessor')) {
+        if (!$container->hasDefinition(ChainMessageProcessor::class)) {
             return;
         }
 
@@ -26,6 +27,6 @@ final class MessageProcessorPass implements CompilerPassInterface
             $processors[] = new Reference($serviceId);
         }
 
-        $container->getDefinition('Ihsan\RatchetBundle\Processor\ChainMessageProcessor')->addArgument($processors);
+        $container->getDefinition(ChainMessageProcessor::class)->addArgument($processors);
     }
 }

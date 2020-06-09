@@ -13,7 +13,7 @@ class Configuration implements ConfigurationInterface
     const ALIAS = 'ihsan_ratchet';
 
     /**
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
+     * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
     {
