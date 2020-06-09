@@ -16,9 +16,10 @@
             <argument type="service" id="logger" on-invalid="null" />
         </service>
         <service id="Ihsan\RatchetBundle\Processor\ChainMessageProcessor" />
-        <service id="Ihsan\RatchetBundle\CommandServerCommand">
+        <service id="Ihsan\RatchetBundle\Command\ServerCommand">
             <argument type="service" id="Ratchet\Http\HttpServer" />
             <argument>%ihsan_ratchet.web_socket_port%</argument>
+            <tag name="console.command" />
         </service>
     </services>
 </container>

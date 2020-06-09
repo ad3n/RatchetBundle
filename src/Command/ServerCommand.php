@@ -2,7 +2,7 @@
 
 namespace Ihsan\RatchetBundle\Command;
 
-use Ratchet\Http\HttpServerInterface;
+use Ratchet\MessageComponentInterface;
 use Ratchet\Server\IoServer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,7 +17,7 @@ class ServerCommand extends Command
 
     private $port;
 
-    public function __construct(HttpServerInterface $server, int $port)
+    public function __construct(MessageComponentInterface $server, int $port)
     {
         $this->server = $server;
         $this->port = $port;
